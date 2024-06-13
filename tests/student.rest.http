@@ -1,0 +1,27 @@
+GET http://localhost:8080/student/getAllStudents
+
+### posting students
+POST http://localhost:8080/student/addStudent
+Content-Type: application/json
+
+{
+    "firstName": "Tom",
+    "lastName": "Cruise",
+    "email": "tomCruise.com",
+    "password": "tomCruise@256"
+}
+
+### delete student
+DELETE http://localhost:8080/student/deleteStudentById/3
+
+
+### upadting a student
+PUT http://localhost:8080/student/updateStudentById/3
+Content-Type: application/json
+
+{
+    "firstName": "Mavin"
+}
+
+### get studentBy Id
+GET http://localhost:8080/student/getOneStudentById/3
