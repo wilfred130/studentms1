@@ -3,7 +3,9 @@ exports.dbConfigs = {
         database: `wilfred`,
         username: 'wilfred',
         password: 'wilfred',
-        port: 3308,
+<<<<<<< HEAD
+=======
+>>>>>>> e359c9254861661238258be4ad1b6440d0790151
         host:'localhost',
         dialect: `mysql`,
     }
