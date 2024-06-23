@@ -1,0 +1,10 @@
+### get payment ledger
+GET http://localhost:8096/payment/getLedger
+
+
+### get student student balances
+GET http://localhost:8096/payment/getStudentBalances/4000000
+
+### get balance for one student
+GET http://localhost:8096/payment/getBalanceForOneStudent/2/3000000
+

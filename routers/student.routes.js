@@ -9,6 +9,7 @@ studentRouter.post(`/addStudent`, studentController.AddStudent)
 studentRouter.delete('/deleteStudentById/:studentId', studentController.deleteStudent)
 studentRouter.put(`/updateStudentById/:studentId`, studentController.updateStudentById)
 studentRouter.get(`/getOneStudentById/:studentId`, studentController.getOneStudentById)
+studentRouter.get('/authenticateUserByEmailAndPassword/:email/:password', studentController.autheticateUserByEmailAndPassword)
 
 
 module.exports = studentRouter;

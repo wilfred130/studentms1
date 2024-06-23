@@ -1,6 +1,6 @@
 const Finance = require(`../models/finance.model`)
 const Student = require(`../models/student.model`)
-const {Op} = require(`sequelize`)
+const {Op, where, col, fn, literal} = require(`sequelize`)
 const Payments = require(`../models/payments.model`)
 
 exports.GetTransactionHistory = async(req, res) => {
@@ -11,14 +11,11 @@ exports.GetTransactionHistory = async(req, res) => {
                 attributes: [
                     'firstName',
                     'lastName',
-                    'email'
+                    'email',
+                    'year',
+                    'gender'
                 ]
             },
-            attributes: [
-                'studentId',
-                'amount',
-                'financeId'
-            ]
         })
         res.send({
             status: `Success`,
@@ -43,7 +40,8 @@ exports.GetInstallmentsByStudent = async(req, res) => {
             where: {studentId: studentId},
             attributes: [
                 'financeId',
-                'amount'
+                'amount',
+                'createdAt'
             ]
         })
 
@@ -52,7 +50,10 @@ exports.GetInstallmentsByStudent = async(req, res) => {
             attributes: [
                 'firstName',
                 'lastName',
-                'email'
+                'email',
+                'year',
+                'gender',
+                'createdAt'
             ]
         })
         
@@ -265,6 +266,42 @@ exports.deleteTransactionById = async(req, res) => {
             status_Code: 500,
             message: error.message,
             result: `Error in deleting transaction`
+        })
+    }
+}
+
+exports.getTotalPaymentsByYear = async(req, res) => {
+    // performing aggregated query
+    try {
+        const results = await Finance.findAll({
+            attributes: [
+                [col('Student.year'), 'year'],
+                [fn('SUM', col('amount')), 'totalAmount']
+            ],
+            include: {
+                model: Student,
+                attributes: [],
+            },
+            group: ['Student.year'],
+            order: [literal('year ASC')]
+        })
+        // format results
+        const yearlySums = results.map(result => ({
+            year: result.get('year'),
+            totalAmount: result.get('totalAmount')
+        }))
+
+        res.send({
+            status: 'Success',
+            status_code: 200,
+            results: yearlySums
+        })
+    } catch (error) {
+        res.send({
+            statas: 'Error',
+            status_code: 500,
+            message: error.message,
+            result: 'Failed to get total Payments'
         })
     }
 }

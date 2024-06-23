@@ -12,6 +12,7 @@ financeRouter.get(`/getInstallmentsByStudent/:studentId`, financeController.GetI
 financeRouter.get(`/getTransactionsByDate/:startDate/:endDate`,financeController.getPaymentsInGivenDateRange)
 financeRouter.put(`/updateTransactionById/:financeId`, financeController.updateTransactionByID)
 financeRouter.delete(`/deleteTransactionById/:financeId`, financeController.deleteTransactionById)
+financeRouter.get('/getTotalPaymentByYear', financeController.getTotalPaymentsByYear)
 
 
 module.exports = financeRouter;

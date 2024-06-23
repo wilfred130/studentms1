@@ -1,0 +1,32 @@
+GET http://localhost:8096/student/getAllStudents
+
+### posting students
+POST http://localhost:8096/student/addStudent
+Content-Type: application/json
+
+{
+    "firstName": "Juko",
+    "lastName": "Solomn",
+    "email": "jukoSolomn@gmail.com",
+    "password": "juko@256",
+    "year": 3,
+    "gender": "Male"
+}
+
+### delete student
+DELETE http://localhost:8096/student/deleteStudentById/15
+
+
+### upadting a student
+PUT http://localhost:8096/student/updateStudentById/1
+Content-Type: application/json
+
+{
+    "lastName": "Morgan"
+}
+
+### get studentBy Id 
+GET http://localhost:8096/student/getOneStudentById/4
+
+### authenticate user 
+GET http://localhost:8096/student/authenticateUserByEmailAndPassword/kisituwilfred@gmail.com/wilfred@256

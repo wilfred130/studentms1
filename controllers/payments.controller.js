@@ -11,13 +11,17 @@ exports.GetLedger = async(req, res) => {
                 attributes: [
                     'firstName',
                     'lastName',
-                    'email'
+                    'email',
+                    'year',
+                    'createdAt',
+                    'gender'
                 ],
                 
             },
             attributes: [
                 'studentId',
-                'totalAmount'
+                'totalAmount',
+                'updatedAt'
             ]
         })
         res.send({
@@ -45,7 +49,10 @@ exports.GetStudentBalances = async(req, res) => {
                 attributes: [
                     `firstName`,
                     `lastName`,
-                    `email`
+                    `email`,
+                    'year',
+                    'email',
+                    'updatedAt'
                 ]
             }
         })

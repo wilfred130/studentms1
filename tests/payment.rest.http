@@ -1,9 +1,9 @@
 ### get payment ledger
-GET http://localhost:8080/payment/getLedger
+GET http://46.101.198.244:8096/payment/getLedger
 
 
 ### get student student balances
-GET http://localhost:8080/payment/getStudentBalances/5000000
+GET http://46.101.198.244:8096/payment/getStudentBalances/4000000
 
 ### get balance for one student
-GET http://localhost:8080/payment/getBalanceForOneStudent/1/5000000
+GET http://46.101.198.244:8096/payment/getBalanceForOneStudent/2/3000000

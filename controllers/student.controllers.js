@@ -11,7 +11,10 @@ exports.GetAllStudents = async(req, res) => {
                 'studentId',
                 'firstName',
                 'lastName',
-                'email'
+                'email',
+                'year',
+                'createdAt',
+                'gender'
             ]
         })
         res.send({
@@ -35,7 +38,21 @@ exports.AddStudent = async(req, res) => {
             firstName: req.body.firstName,
             lastName: req.body.lastName,
             email: req.body.email,
-            password: req.body.password
+            password: req.body.password,
+            year: req.body.year,
+            gender: req.body.gender
+        }
+
+        const studentInDb = await Student.findOne({
+            where: {email: req.body.email}
+        })
+        if(studentInDb != null){
+            res.send({
+                status: 'Duplication',
+                status_code: 201,
+                result: 'Student already exists'
+            })
+            return
         }
 
         const newStudent = await Student.create(student)
@@ -134,7 +151,7 @@ exports.getOneStudentById = async(req, res) => {
         const studentId = req.params.studentId
         const student = await Student.findOne({
             where: {studentId: studentId},
-            attributes: ['firstName', 'lastName', 'email', 'studentId']
+            attributes: ['firstName', 'lastName', 'email', 'studentId', 'year', 'createdAt']
         })
 
         if(student == null){
@@ -158,6 +175,46 @@ exports.getOneStudentById = async(req, res) => {
             status_code: 500,
             message: error.message,
             result: `Error in getting student`
+        })
+    }
+}
+exports.autheticateUserByEmailAndPassword = async(req, res) => {
+    try {
+        const email = req.params.email
+        const password = req.params.password
+        // user existance
+        const student = await Student.findOne({where: {email: email}})
+        if(student == null) {
+            res.send({
+                status: 'Failed',
+                status_code: 404,
+                result: 'User does not exist'
+            })
+            return
+        }
+        // check for matching passwords
+
+        if(student['password']=== password) {
+            res.send({
+                status: 'Success',
+                status_code: 200,
+                message: 'User exists',
+                result: 1
+            })
+            return;
+        }
+        res.send({
+            status: 'Failed',
+            status_Code: 201,
+            message: 'Invalid Password',
+            result: 0
+        })
+    } catch (error) {
+        res.send({
+            status: 'Error',
+            status_code: 500,
+            message: error.message,
+            result: 'Error in authenticating user'
         })
     }
 }

@@ -3,7 +3,7 @@ const bodyParser  = require(`body-parser`)
 const {sequelize, testConnection} = require(`../configs/dbConnections`)
 
 const app = express()
-const port = 8080
+const port = 8096
 
 // db authetication
 testConnection

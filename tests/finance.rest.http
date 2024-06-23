@@ -1,5 +1,5 @@
 ### create a payment
-POST http://localhost:8080/finance/makeTransaction
+POST http://46.101.198.244:8096/finance/makeTransaction
 Content-Type: application/json
 
 {
@@ -7,24 +7,28 @@ Content-Type: application/json
     "studentId": 2
 }
 
+
 ### get transcation historuy
-GET http://localhost:8080/finance/getTransactionHistory
+GET http://46.101.198.244:8096/finance/getTransactionHistory
 
 ### get student installments
-GET http://localhost:8080/finance/getInstallmentsByStudent/1
+GET http://46.101.198.244:8096/finance/getInstallmentsByStudent/1
 
 
 ### get transactions by period
 
-GET http://localhost:8080/finance/getTransactionsByDate/2024-06-11/2023-06-11
+GET http://46.101.198.244:8096/finance/getTransactionsByDate/2024-06-11/2023-06-11
 
 ### update student by id
-PUT  http://localhost:8080/finance/updateTransactionById/2
+PUT  http://46.101.198.244:8096/finance/updateTransactionById/2
 Content-Type: application/json
 
 {
-    "amount": 300000
+    "amount": 600000
 }
 
 ### deleting a finance transaction 
-DELETE http://localhost:8080/finance/deleteTransactionById/12
+DELETE http://46.101.198.244:8096/finance/deleteTransactionById/4
+
+### get total Payment by year
+GET http://46.101.198.244:8096/finance/getTotalPaymentByYear

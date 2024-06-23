@@ -1,27 +1,32 @@
-GET http://localhost:8080/student/getAllStudents
+GET http://46.101.198.244:8096/student/getAllStudents
 
 ### posting students
-POST http://localhost:8080/student/addStudent
+POST http://46.101.198.244:8096/student/addStudent
 Content-Type: application/json
 
 {
-    "firstName": "Tom",
-    "lastName": "Cruise",
-    "email": "tomCruise.com",
-    "password": "tomCruise@256"
+    "firstName": "Ntanda",
+    "lastName": "Nassar",
+    "email": "ntandaNasser@gmail.com",
+    "password": "ntanda@256",
+    "year": 4,
+    "gender": "Male"
 }
 
 ### delete student
-DELETE http://localhost:8080/student/deleteStudentById/3
+DELETE http://46.101.198.244:8096/student/deleteStudentById/15
 
 
 ### upadting a student
-PUT http://localhost:8080/student/updateStudentById/3
+PUT http://46.101.198.244:8096/student/updateStudentById/4
 Content-Type: application/json
 
 {
-    "firstName": "Mavin"
+    "lastName": "Morgan"
 }
 
-### get studentBy Id
-GET http://localhost:8080/student/getOneStudentById/3
+### get studentBy Id -- this has issues
+GET http://46.101.198.244:8096/student/getOneStudentById/1
+
+### authenticate user 
+GET http://46.101.198.244:8096/student/authenticateUserByEmailAndPassword/kisituwilfred@gmail.com/wilfred@256
